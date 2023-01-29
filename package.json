@@ -11,5 +11,6 @@
 	},
 	"dependencies": 
 	{
+	   "com.unity.inputsystem": "1.4.4"
 	}
 }
