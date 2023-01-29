@@ -1,7 +1,7 @@
 {
 	"name": "com.brennanhatton.vrifpunassets",
 	"description": "PUN Assets, requires PUN-2 & VRIF. Designed for Quest",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"unity": "2021.3",
 	"displayName": "Brennan Hatton VRIF PUN Assets",
 	"author": 
