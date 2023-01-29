@@ -14,7 +14,8 @@
 	},
 	"dependencies": 
 	{
-	   "com.unity.inputsystem": "1.4.4"
+		"com.unity.inputsystem": "1.4.4",
+		"com.brennanhatton.unitytools": "1:0:1"
 	},
 	 "keywords": [
 	    "Brennan",
