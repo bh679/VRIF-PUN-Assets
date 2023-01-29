@@ -6,7 +6,8 @@
         "PhotonRealtime",
         "Unity.InputSystem",
         "BNGCore",
-        "BNGHandPoseID"
+        "BNGHandPoseID",
+        "BrennanHattonUnityTools"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
