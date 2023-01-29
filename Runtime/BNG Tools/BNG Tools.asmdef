@@ -2,7 +2,7 @@
     "name": "BNGTools",
     "rootNamespace": "BrennanHatton.BNGTools",
     "references": [
-        "GUID:d4f55ad2303747444ba93bb547200f61"
+        "BNGCore"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
