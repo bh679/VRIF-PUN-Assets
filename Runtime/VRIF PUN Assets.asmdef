@@ -1,7 +1,10 @@
 {
-    "name": "PUN Assets",
+    "name": "VRIF PUN Assets",
     "rootNamespace": "BrennanHatton.Networking",
-    "references": [],
+    "references": [
+        "PhotonUnityNetworking",
+        "PhotonRealtime"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
