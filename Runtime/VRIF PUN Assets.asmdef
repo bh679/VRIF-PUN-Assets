@@ -4,7 +4,9 @@
     "references": [
         "PhotonUnityNetworking",
         "PhotonRealtime",
-        "Unity.InputSystem"
+        "Unity.InputSystem",
+        "BNGCore",
+        "BNGHandPoseID"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
