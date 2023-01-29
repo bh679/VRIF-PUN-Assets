@@ -7,7 +7,8 @@
         "Unity.InputSystem",
         "BNGCore",
         "BNGHandPoseID",
-        "BrennanHattonUnityTools"
+        "BrennanHattonUnityTools",
+        "BNGTools"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

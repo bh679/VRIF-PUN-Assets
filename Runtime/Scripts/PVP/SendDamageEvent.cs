@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using BNG;
+using BrennanHatton.BNGTools;
 
 namespace BrennanHatton.Networking.Events
 {

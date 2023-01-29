@@ -1,8 +1,10 @@
-﻿#if BNG
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BNG;
+
+namespace BrennanHatton.BNGTools
+{
 
 public class ActiveOnHandedness : MonoBehaviour
 {
@@ -36,4 +38,5 @@ public class ActiveOnHandedness : MonoBehaviour
 		    wasHeld = grabbable.BeingHeld;
     }
 }
-#endif
+}
+

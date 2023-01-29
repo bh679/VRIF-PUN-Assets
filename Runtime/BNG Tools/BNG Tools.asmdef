@@ -1,0 +1,16 @@
+{
+    "name": "BNGTools",
+    "rootNamespace": "BrennanHatton.BNGTools",
+    "references": [
+        "GUID:d4f55ad2303747444ba93bb547200f61"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

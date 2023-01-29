@@ -1,10 +1,11 @@
-﻿#if BNG
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BNG;
 using UnityEngine.Events;
 
+namespace BrennanHatton.BNGTools
+{
 public class EventOnVRInputBridge : MonoBehaviour
 {
 	//	VRUISystem.Instance.
@@ -35,4 +36,4 @@ public class EventOnVRInputBridge : MonoBehaviour
 		*/
     }
 }
-#endif
+}
