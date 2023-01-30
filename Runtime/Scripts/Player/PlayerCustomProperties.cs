@@ -18,9 +18,9 @@ namespace BrennanHatton.Networking
 			
 			if(hash.ContainsKey(id))
 			{
-				hash[Facilitator] = value;
+				hash[id] = value;
 			} else
-				hash.Add(Facilitator, value);
+				hash.Add(id, value);
 				
 			PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
 		}
