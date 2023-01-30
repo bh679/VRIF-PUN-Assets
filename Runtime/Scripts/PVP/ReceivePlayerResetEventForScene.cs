@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,7 +15,6 @@ namespace BrennanHatton.Networking.Events
 	{
 		public UnityEvent onReceiveLocal, onReceiveGlobal;
 		public PlayerSpawnPosition spawner;
-		public int purpetatorId;
 		
 		void Reset()
 		{
@@ -40,8 +39,6 @@ namespace BrennanHatton.Networking.Events
 			{
 				object[] data = (object[])photonEvent.CustomData;
 				int id = (int)data[0];
-				
-				purpetatorId = id;
 				
 				if(id == PhotonNetwork.LocalPlayer.ActorNumber)
 				{

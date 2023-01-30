@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using BrennanHatton.Networking.Events;
-using EqualReality.Networking;
 using BrennanHatton.UnityTools;
 
+namespace BrennanHatton.Networking
+{
 public class AvatarManager : MonoBehaviour
 {
 	public PhotonView photonView;
@@ -88,4 +89,5 @@ public class AvatarManager : MonoBehaviour
 		
 		return Color.white;
 	}*/
+}
 }

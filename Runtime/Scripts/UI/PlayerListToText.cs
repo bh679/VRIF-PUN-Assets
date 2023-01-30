@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-namespace EqualReality.Networking
+namespace BrennanHatton.Networking
 {
 
 	public class PlayerListToText : MonoBehaviourPunCallbacks

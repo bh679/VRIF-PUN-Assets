@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 using ExitGames.Client.Photon;
 using BrennanHatton.Networking.Events;
-using EqualReality.Networking;
+using BrennanHatton.Networking;
 
 public class PlayerSetActive : MonoBehaviourPunCallbacks
 {

@@ -6,7 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
 
-namespace EqualReality.Networking
+namespace BrennanHatton.Networking
 {
 
 	public class PlayersInRoom : MonoBehaviour

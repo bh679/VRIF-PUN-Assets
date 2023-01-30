@@ -5,7 +5,7 @@ using Photon.Realtime;
 using Photon.Pun;
 using BrennanHatton.UnityTools;
 
-namespace EqualReality.Networking
+namespace BrennanHatton.Networking
 {
 
 	public class AvatarUI : MonoBehaviour
