@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,8 +13,9 @@ namespace BrennanHatton.Networking.Events
 	
 	public class ReceivePlayerResetEventForScene : MonoBehaviour, IOnEventCallback
 	{
-		public UnityEvent onReceive;
+		public UnityEvent onReceiveLocal, onReceiveGlobal;
 		public PlayerSpawnPosition spawner;
+		public int purpetatorId;
 		
 		void Reset()
 		{
@@ -40,12 +41,15 @@ namespace BrennanHatton.Networking.Events
 				object[] data = (object[])photonEvent.CustomData;
 				int id = (int)data[0];
 				
-				//Debug.Log("RecieveDamageEvent id:" + id + " targetPlayerId:" + target+" damage:" +damage);
+				purpetatorId = id;
+				
 				if(id == PhotonNetwork.LocalPlayer.ActorNumber)
 				{
-					spawner.SetPosition();
-					onReceive.Invoke();
+					if(spawner != null) spawner.SetPosition();
+					onReceiveLocal.Invoke();
 				}
+				
+				onReceiveGlobal.Invoke();
 				
 			}
 		}
