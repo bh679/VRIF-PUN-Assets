@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,6 +15,7 @@ namespace BrennanHatton.Networking.Events
 		public UnityEvent onReceive; 
 		public PhotonView player;
 		public Damageable health;
+		public bool allowedFromSelf = true;
 		
 		void Reset()
 		{
@@ -43,6 +44,9 @@ namespace BrennanHatton.Networking.Events
 				int target = (int)data[1];
 				int damage = (int)data[2];
 				string item= (string)data[3];
+				
+				if(allowedFromSelf && id  == player.Owner.ActorNumber)
+					return;
 				
 				Debug.Log("RecieveDamageEvent id:" + id + " targetPlayerId:" + target+" damage:" +damage);
 				if(target == player.Owner.ActorNumber)
