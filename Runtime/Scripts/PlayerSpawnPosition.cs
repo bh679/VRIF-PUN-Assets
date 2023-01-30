@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
@@ -8,7 +8,7 @@ using EqualReality.UserModes;
 using EqualReality.UserModes.Offline;//this could be removed by having two player spawn positions classes. One for online, one for offline, and they are enabled / disabiled by an isolated system that checks for offlinemode
 using UnityEngine.SceneManagement;
 
-namespace EqualReality.Networking
+namespace BrennanHatton.Networking
 {
 	[System.Serializable]
 	public enum SpawnMethod
@@ -74,7 +74,10 @@ namespace EqualReality.Networking
 						spawnPoints[(PhotonNetwork.LocalPlayer.ActorNumber - 1) % spawnPoints.Length].gameObject.SetActive(true);
 					}
 				}else
+				{
 					Player.TeleportPlayerToTransform(spawnPoints[Random.Range(0,spawnPoints.Length-1)]);
+				}
+					
 			}
 			
 			else
