@@ -1,96 +1,100 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using BNG;
 
-[RequireComponent(typeof(PhotonView))]
-[RequireComponent(typeof(PhotonTransformView))]
-public class NetworkedGrabbable : MonoBehaviourPunCallbacks
-{
-	bool joined, owner;
-	public GrabbableUnityEvents grabbableEvents;
-	Grabbable grabbable;
-	public Rigidbody rb;
+namespace BrennanHatton.Networking{
 	
-	bool isKinematic = false;
-	bool useGravity = true;
-	
-	void Reset()
+	[RequireComponent(typeof(PhotonView))]
+	[RequireComponent(typeof(PhotonRigidbodyView))]
+	public class NetworkedGrabbable : MonoBehaviourPunCallbacks
 	{
-		grabbableEvents = this.GetComponent<GrabbableUnityEvents>();
-		if(!grabbableEvents)
-			grabbableEvents = this.gameObject.AddComponent<GrabbableUnityEvents>();
-			
-		rb = this.GetComponent<Rigidbody>();
-			
-		if(this.GetComponent<PhotonView>() != null)
-			this.GetComponent<PhotonView>().OwnershipTransfer = OwnershipOption.Takeover;
+		bool joined, owner;
+		public GrabbableUnityEvents grabbableEvents;
+		Grabbable grabbable;
+		public Rigidbody rb;
 		
-		if(this.GetComponent<PhotonTransformView>() != null)
-			this.GetComponent<PhotonTransformView>().m_UseLocal = false;
-			
-	}
-	
-	void Start()
-	{
-		Debug.Log(grabbableEvents);
-		Debug.Log(grabbableEvents.onGrab);
-		grabbableEvents.onGrab.AddListener((Grabber grabber)=>{TakeOver();});
-		grabbableEvents.onRelease.AddListener(()=>{
-			if(owner)
-				rb.useGravity = useGravity;
-		});
-		//isKinematic = rb.isKinematic;
-		//useGravity = rb.useGravity;
-		grabbable = this.GetComponent<Grabbable>();
-	}
-	
-	public override void OnJoinedRoom()
-	{
-		joined = true;
-		if(this.photonView.Owner == null && PhotonNetwork.LocalPlayer.IsMasterClient)
-			TakeOver();
-	}
-
-    // Update is called once per frame
-    void Update()
-    {
-	    if(!joined)
-		    return;
-		    
-    }
-    
-	void LateUpdate()
-	{
-		if(!joined)
-			return;
-			
-		owner = this.photonView.Owner != null && this.photonView.Owner.ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber;
+		bool isKinematic = false;
+		bool useGravity = true;
 		
-		    
-		if(!owner)
+		void Reset()
 		{
-			rb.isKinematic = false;
-			rb.useGravity = false;
-			if(grabbable.BeingHeld)
-			{
+			grabbableEvents = this.GetComponent<GrabbableUnityEvents>();
+			if(!grabbableEvents)
+				grabbableEvents = this.gameObject.AddComponent<GrabbableUnityEvents>();
 				
-				Vector3 velocity = grabbable.HeldByGrabbers[0].GetGrabberAveragedVelocity() + grabbable.HeldByGrabbers[0].GetComponent<Rigidbody>().velocity;
-				Vector3 angularVelocity = grabbable.HeldByGrabbers[0].GetGrabberAveragedAngularVelocity() + grabbable.HeldByGrabbers[0].GetComponent<Rigidbody>().angularVelocity;
-				grabbable.Release(velocity,angularVelocity);
-			}
-		    
+			rb = this.GetComponent<Rigidbody>();
+				
+			if(this.GetComponent<PhotonView>() != null)
+				this.GetComponent<PhotonView>().OwnershipTransfer = OwnershipOption.Takeover;
+			
+			//if(this.GetComponent<PhotonRigidbodyView>() != null)
+			//	this.GetComponent<PhotonRigidbodyView>().m_UseLocal = false;
+				
+		}
+		
+		void Start()
+		{
+			Debug.Log(grabbableEvents);
+			Debug.Log(grabbableEvents.onGrab);
+			grabbableEvents.onGrab.AddListener((Grabber grabber)=>{TakeOver();});
+			grabbableEvents.onRelease.AddListener(()=>{
+				if(owner)
+					rb.useGravity = useGravity;
+			});
+			//isKinematic = rb.isKinematic;
+			//useGravity = rb.useGravity;
+			grabbable = this.GetComponent<Grabbable>();
+		}
+		
+		public override void OnJoinedRoom()
+		{
+			joined = true;
 			if(this.photonView.Owner == null && PhotonNetwork.LocalPlayer.IsMasterClient)
 				TakeOver();
 		}
+	
+	    // Update is called once per frame
+	    void Update()
+	    {
+		    if(!joined)
+			    return;
+			    
+	    }
+	    
+		void LateUpdate()
+		{
+			if(!joined)
+				return;
+				
+			owner = this.photonView.Owner != null && this.photonView.Owner.ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber;
+			
+			    
+			if(!owner)
+			{
+				rb.isKinematic = false;
+				rb.useGravity = false;
+				if(grabbable.BeingHeld)
+				{
+					
+					Vector3 velocity = grabbable.HeldByGrabbers[0].GetGrabberAveragedVelocity() + grabbable.HeldByGrabbers[0].GetComponent<Rigidbody>().velocity;
+					Vector3 angularVelocity = grabbable.HeldByGrabbers[0].GetGrabberAveragedAngularVelocity() + grabbable.HeldByGrabbers[0].GetComponent<Rigidbody>().angularVelocity;
+					grabbable.Release(velocity,angularVelocity);
+				}
+			    
+				if(this.photonView.Owner == null && PhotonNetwork.LocalPlayer.IsMasterClient)
+					TakeOver();
+			}
+	
+		}
+	    
+		public void TakeOver()
+		{
+			this.photonView.TransferOwnership(PhotonNetwork.LocalPlayer);
+			rb.isKinematic = isKinematic;
+			rb.useGravity = useGravity;
+		}
+	}
 
-	}
-    
-	public void TakeOver()
-	{
-		this.photonView.TransferOwnership(PhotonNetwork.LocalPlayer);
-		rb.isKinematic = isKinematic;
-		rb.useGravity = useGravity;
-	}
 }
