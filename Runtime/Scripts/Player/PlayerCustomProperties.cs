@@ -24,6 +24,11 @@ namespace BrennanHatton.Networking
 				
 			PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
 		}
+		
+		public T GetCustomProp<T>(Player player, string id)
+		{
+			return (T)player.CustomProperties[id];
+		}
 	    
 		public static void SetFacilitator(bool active)
 		{
