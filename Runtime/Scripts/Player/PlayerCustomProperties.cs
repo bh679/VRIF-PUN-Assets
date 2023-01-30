@@ -11,16 +11,19 @@ namespace BrennanHatton.Networking
 	public class PlayerCustomProperties : MonoBehaviour
 	{
 		public const string  ActiveScene = "ActiveScene", AvatarId= "AvatarId", Facilitator = "Facilitator", ClassSceneId = "ClassSceneId";
-		/*public bool run =false;
 		
-	    // Start is called before the first frame update
-		void OnEnable()
+		public static void SetCustomProp<T>(string id, T value)
 		{
-			if(!run)
-				return;
+			var hash = PhotonNetwork.LocalPlayer.CustomProperties;
 			
-			SetActiveScene();
-		}*/
+			if(hash.ContainsKey(id))
+			{
+				hash[Facilitator] = value;
+			} else
+				hash.Add(Facilitator, value);
+				
+			PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+		}
 	    
 		public static void SetFacilitator(bool active)
 		{
