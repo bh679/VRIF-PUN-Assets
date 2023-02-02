@@ -1,19 +1,24 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+
+namespace BrennanHatton.Networking
+{
 
 public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
 {
 	
 	public string PlayerPrebName = "Network Player";
 	public static List<PhotonView> spawnedPlayerPrefabs = new List<PhotonView>();
+	public static PhotonView localPlayer;
 	
 	public override void OnJoinedRoom()
 	{
 		
 		base.OnJoinedRoom();
-		spawnedPlayerPrefabs.Add(PhotonNetwork.Instantiate(PlayerPrebName, transform.position, transform.rotation).GetComponent<PhotonView>());
+		localPlayer = PhotonNetwork.Instantiate(PlayerPrebName, transform.position, transform.rotation).GetComponent<PhotonView>();
+		spawnedPlayerPrefabs.Add(localPlayer);
 	}
 	
 	public override void OnLeftRoom()
@@ -26,4 +31,6 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
 				PhotonNetwork.Destroy(spawnedPlayerPrefabs[i].gameObject);
 		}
 	}
+}
+
 }
