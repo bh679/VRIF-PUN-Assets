@@ -29,22 +29,17 @@ namespace BrennanHatton.Networking{
 			if(this.GetComponent<PhotonView>() != null)
 				this.GetComponent<PhotonView>().OwnershipTransfer = OwnershipOption.Takeover;
 			
-			//if(this.GetComponent<PhotonRigidbodyView>() != null)
-			//	this.GetComponent<PhotonRigidbodyView>().m_UseLocal = false;
 				
 		}
 		
 		void Start()
 		{
-			Debug.Log(grabbableEvents);
-			Debug.Log(grabbableEvents.onGrab);
 			grabbableEvents.onGrab.AddListener((Grabber grabber)=>{TakeOver();});
 			grabbableEvents.onRelease.AddListener(()=>{
 				if(owner)
 					rb.useGravity = useGravity;
 			});
-			//isKinematic = rb.isKinematic;
-			//useGravity = rb.useGravity;
+			
 			grabbable = this.GetComponent<Grabbable>();
 		}
 		
