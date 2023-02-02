@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ExitGames.Client.Photon;
@@ -20,7 +20,7 @@ namespace BrennanHatton.Networking.Events
 		
 		public static void SendUpdateHealthEvent(int targetPlayerId, int damage, string item)
 		{
-			Debug.Log("SendUpdateHealthEvent id:" + PhotonNetwork.LocalPlayer.ActorNumber + " targetPlayerId:" + targetPlayerId+" damage:" +damage);
+			//Debug.Log("SendUpdateHealthEvent id:" + PhotonNetwork.LocalPlayer.ActorNumber + " targetPlayerId:" + targetPlayerId+" damage:" +damage);
 			object[] content = new object[] { PhotonNetwork.LocalPlayer.ActorNumber, targetPlayerId, damage, item }; // Array contains the target position and the IDs of the selected units
 			RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All }; // You would have to set the Receivers to All in order to receive this event on the local client as well
 			PhotonNetwork.RaiseEvent(PlayerTakeDamage, content, raiseEventOptions, SendOptions.SendReliable);
@@ -28,7 +28,7 @@ namespace BrennanHatton.Networking.Events
 		
 		public static void SendPlayerResetEvent()
 		{
-			Debug.Log("SendPlayerResetEvent id:" + PhotonNetwork.LocalPlayer.ActorNumber );
+			//Debug.Log("SendPlayerResetEvent id:" + PhotonNetwork.LocalPlayer.ActorNumber );
 			object[] content = new object[] { PhotonNetwork.LocalPlayer.ActorNumber }; // Array contains the target position and the IDs of the selected units
 			RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All }; // You would have to set the Receivers to All in order to receive this event on the local client as well
 			PhotonNetwork.RaiseEvent(PlayerResetEventCode, content, raiseEventOptions, SendOptions.SendReliable);
@@ -36,7 +36,7 @@ namespace BrennanHatton.Networking.Events
 		
 		public static void SendPlayerShotHit(int gunId, Vector3 position, Quaternion rotation)
 		{
-			Debug.Log("SendPlayerShotHit id:" + PhotonNetwork.LocalPlayer.ActorNumber );
+			//Debug.Log("SendPlayerShotHit id:" + PhotonNetwork.LocalPlayer.ActorNumber );
 			object[] content = new object[] { PhotonNetwork.LocalPlayer.ActorNumber, gunId, position, rotation }; // Array contains the target position and the IDs of the selected units
 			RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All }; // You would have to set the Receivers to All in order to receive this event on the local client as well
 			PhotonNetwork.RaiseEvent(PlayerShotHit, content, raiseEventOptions, SendOptions.SendReliable);
@@ -44,7 +44,7 @@ namespace BrennanHatton.Networking.Events
 		
 		public static void SendPlayerShoot(int gunId, Vector3 position, Quaternion rotation)
 		{
-			Debug.Log("SendPlayerShoot id:" + PhotonNetwork.LocalPlayer.ActorNumber );
+			//Debug.Log("SendPlayerShoot id:" + PhotonNetwork.LocalPlayer.ActorNumber );
 			object[] content = new object[] { PhotonNetwork.LocalPlayer.ActorNumber, gunId, position, rotation }; // Array contains the target position and the IDs of the selected units
 			RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All }; // You would have to set the Receivers to All in order to receive this event on the local client as well
 			PhotonNetwork.RaiseEvent(PlayerShoot, content, raiseEventOptions, SendOptions.SendReliable);
