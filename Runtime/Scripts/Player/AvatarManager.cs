@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
@@ -34,7 +34,7 @@ public class AvatarManager : MonoBehaviour
 		mouth.enableRandom();
 		head.enableRandom();
 		body.enableRandom();
-		materialSetter.SetRandomMaterial();
+		materialSetter.SetMaterialPlz(photonView.Owner.ActorNumber);
 		
 		Random.seed = seed;
 	}
