@@ -1,38 +1,93 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Realtime;
 using Photon.Pun;
+using BrennanHatton.Networking.Events;
 using BrennanHatton.UnityTools;
 
 namespace BrennanHatton.Networking
 {
-
-	public class AvatarUI : MonoBehaviour
+public class AvatarManager : MonoBehaviour
+{
+	public PhotonView photonView;
+	public EnableRandomGameobject eyes, mouth, head, body;
+	public SetMaterial materialSetter;
+	int activeId = 0;
+	
+	public void SetAvatar()
 	{
-		public int AvatarId = 0;
+		int previousId = activeId;
 		
-		public PlayerCustomProperties customPropSetter;
+		if(photonView.Owner.CustomProperties.ContainsKey(PlayerCustomProperties.AvatarId))
+			activeId = (int)photonView.Owner.CustomProperties[PlayerCustomProperties.AvatarId];
 		
-		public EnableRandomGameobject eyes, mouth, head, body;
-		public SetMaterial materialSetter;
-	    
-		void Start()
+		if(previousId != activeId)
+			EnableFromSeed();
+	}
+	
+	void EnableFromSeed()
+	{
+		int seed = Random.seed;
+		
+		Random.seed = activeId;
+		eyes.enableRandom();
+		mouth.enableRandom();
+		head.enableRandom();
+		body.enableRandom();
+		materialSetter.SetMaterialPlz(photonView.Owner.ActorNumber);
+		
+		Random.seed = seed;
+	}
+	
+    // Start is called before the first frame update
+	void Start()
+	{
+		activeId = (int)System.DateTime.Now.TimeOfDay.TotalMilliseconds;
+	
+		if(photonView.Owner.CustomProperties.ContainsKey(PlayerCustomProperties.AvatarId))
+			activeId = (int)photonView.Owner.CustomProperties[PlayerCustomProperties.AvatarId];
+		else if(photonView.Owner.IsLocal)
 		{
-			if(PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey(PlayerCustomProperties.AvatarId))
-				SetFromId((int)PhotonNetwork.LocalPlayer.CustomProperties[PlayerCustomProperties.AvatarId]);
-			
+			PlayerCustomProperties.SetAvatarId(activeId);
+			SendEventManager.SendChangeAvatarEvent(PhotonNetwork.LocalPlayer.ActorNumber);
 		}
-	    
-		public void SetFromId(int id)
+		
+		EnableFromSeed();
+		
+		if(photonView.Owner.IsLocal)
 		{
-			//Debug.LogError(id);
-			Random.seed = id;
-			eyes.enableRandom();
-			mouth.enableRandom();
-			head.enableRandom();
-			body.enableRandom();
-			materialSetter.SetRandomMaterial();
+			Transform[] children = head.GetComponentsInChildren<Transform>(true);
+			
+			for(int i =0 ; i < children.Length; i++)
+			{
+				children[i].gameObject.layer = LayerMask.NameToLayer("PlayerInvisible");
+			}
 		}
 	}
+	
+    
+	void TurnOffGroup(List<GameObject> objectsToTurnOff)
+	{
+		for(int i = 0; i < objectsToTurnOff.Count; i++)
+		{
+			objectsToTurnOff[i].SetActive(false);
+		}
+	}
+	
+	/*void OnDestory()
+	{
+		avatars.Remove(this);
+	}
+	
+	public static Color GetColorOfAvatar(int actorNumber)
+	{
+		for(int i = 0; i < avatars.Count; i++)
+		{
+			if(avatars[i].photonView.Owner.ActorNumber == actorNumber)
+				return avatars[i].materialSetter.meshRenderers[0].material.GetColor("_Highlight Color");
+		}
+		
+		return Color.white;
+	}*/
+}
 }
