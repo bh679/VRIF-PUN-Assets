@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
@@ -20,7 +20,8 @@ namespace BrennanHatton.Networking
 		static RoomOptions roomOptions = null;
 		public static int roomSize = 10;
 		public static bool visible = false, open = true;
-		public bool autoConnect = false;
+		public bool autoConnect = false,
+			autoReconnect = true;
 		public static string roomName = "Public";
 		
 		
@@ -164,7 +165,9 @@ namespace BrennanHatton.Networking
 		{
 			if(statusText != null)
 				statusText.text = "You have been disconnected. Reason: " + cause.ToString() + "\nTrying to reconnect...";
-			ConnectToServer();
+				
+			if(autoReconnect)
+				ConnectToServer();
 		}
 		
 		public static Player GetActorPlayer(int actor)
