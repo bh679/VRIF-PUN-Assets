@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 //using Photon.Voice.Unity;
 //using Photon.Voice.Unity.UtilityScripts;
-namespace EqualReality.Networking
+namespace BrennanHatton.Networking
 {
 	public class NetworkManager : MonoBehaviourPunCallbacks
 	{
