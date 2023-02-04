@@ -15,6 +15,7 @@ namespace BrennanHatton.Networking
 		public string[] noun, adjective;
 		public UnityEvent onSetFromInput, onChange;
 		public bool setOnEnable = true;
+		public bool useNoun = true, useAdjective = true;
 		
 		
 		public void OnEnable()
@@ -45,7 +46,9 @@ namespace BrennanHatton.Networking
 	    
 		public string GetRandomNickName()
 		{	
-			return adjective[Random.Range(0,adjective.Length-1)] + " " + noun[Random.Range(0,noun.Length-1)];
+			return (useAdjective?adjective[Random.Range(0,adjective.Length-1)]:"") 
+				+ " "
+				+ (useNoun?noun[Random.Range(0,noun.Length-1)]:"");
 		}
 	}
 
