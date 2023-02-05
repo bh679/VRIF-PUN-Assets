@@ -31,6 +31,18 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
 				PhotonNetwork.Destroy(spawnedPlayerPrefabs[i].gameObject);
 		}
 	}
+	
+	public override void OnLeftRoom()
+	{
+		base.OnLeftRoom();
+		
+		for (int i = 0; i < spawnedPlayerPrefabs.Count; i++)
+		{
+			if(spawnedPlayerPrefabs[i] != null)
+				PhotonNetwork.Destroy(spawnedPlayerPrefabs[i].gameObject);
+		}
+	}
+	
 }
 
 }
