@@ -15,8 +15,8 @@ namespace BrennanHatton.Networking{
 		Grabbable grabbable;
 		public Rigidbody rb;
 		
-		bool isKinematic = false;
-		bool useGravity = true;
+		//bool isKinematic = false;
+		//bool useGravity = true;
 		
 		void Reset()
 		{
@@ -35,10 +35,10 @@ namespace BrennanHatton.Networking{
 		void Start()
 		{
 			grabbableEvents.onGrab.AddListener((Grabber grabber)=>{TakeOver();});
-			grabbableEvents.onRelease.AddListener(()=>{
-				if(owner)
-					rb.useGravity = useGravity;
-			});
+			//grabbableEvents.onRelease.AddListener(()=>{
+				//if(owner)
+					//rb.useGravity = useGravity;
+			//});
 			
 			grabbable = this.GetComponent<Grabbable>();
 		}
@@ -68,8 +68,8 @@ namespace BrennanHatton.Networking{
 			    
 			if(!owner)
 			{
-				rb.isKinematic = false;
-				rb.useGravity = false;
+				//rb.isKinematic = false;
+				//rb.useGravity = false;
 				if(grabbable.BeingHeld)
 				{
 					
@@ -87,8 +87,8 @@ namespace BrennanHatton.Networking{
 		public void TakeOver()
 		{
 			this.photonView.TransferOwnership(PhotonNetwork.LocalPlayer);
-			rb.isKinematic = isKinematic;
-			rb.useGravity = useGravity;
+			//rb.isKinematic = isKinematic;
+			//rb.useGravity = useGravity;
 		}
 	}
 
