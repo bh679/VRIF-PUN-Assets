@@ -32,15 +32,15 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
 		}
 	}
 	
-	public override void OnLeftRoom()
+	public PhotonView GetPlayerByActor(int actor)
 	{
-		base.OnLeftRoom();
-		
-		for (int i = 0; i < spawnedPlayerPrefabs.Count; i++)
+		for(int i = 0; i < spawnedPlayerPrefabs.Count; i++)
 		{
-			if(spawnedPlayerPrefabs[i] != null)
-				PhotonNetwork.Destroy(spawnedPlayerPrefabs[i].gameObject);
+			if(spawnedPlayerPrefabs[i].Owner.ActorNumber == actor)
+				return spawnedPlayerPrefabs[i];
 		}
+		
+		return null;
 	}
 	
 }
