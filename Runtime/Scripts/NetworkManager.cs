@@ -14,15 +14,13 @@ namespace BrennanHatton.Networking
 	{
 		public UnityEvent onConnectedToMaster = new UnityEvent(),onJoinedRoom = new UnityEvent(), onPlayerEnteredRoom = new UnityEvent();
 		
-		//public Recorder voiceRecorder;
-		//public VoiceConnection voiceConnection;
-		
 		static RoomOptions roomOptions = null;
 		public static int roomSize = 10;
 		public static bool visible = false, open = true;
 		public bool autoConnect = false,
 			autoReconnect = true;
 		public static string roomName = "Public";
+		public float reconnectDelay = 0;
 		
 		
 		static string roomPassword;
@@ -56,17 +54,10 @@ namespace BrennanHatton.Networking
 		void Reset()
 		{
 			roomName = SceneManager.GetActiveScene().name;
-			//	voiceRecorder = GameObject.FindObjectOfType<Recorder>();
-			//	voiceConnection = GameObject.FindObjectOfType<VoiceConnection>();
 		}
 		
 		public void Start()
 		{
-			/*if(voiceRecorder == null)
-				voiceRecorder = GameObject.FindObjectOfType<Recorder>();
-				
-			if(voiceConnection == null)
-			voiceConnection = GameObject.FindObjectOfType<VoiceConnection>();*/
 			
 			if(!PhotonNetwork.IsConnectedAndReady)
 			{
@@ -102,7 +93,7 @@ namespace BrennanHatton.Networking
 			
 			if(statusText != null)
 				statusText.text = "You joined a classroom.\nYour name is " + PhotonNetwork.NickName + ".\nThere are " + PhotonNetwork.PlayerList.Length + " classmates already here.";
-			//Debug.Log("You joined a classroom.\nYour name is " + PhotonNetwork.NickName + ".\nThere are " + PhotonNetwork.PlayerList.Length + " classmates already here.");
+				
 			base.OnJoinedRoom();
 			
 			onJoinedRoom.Invoke();
@@ -140,8 +131,7 @@ namespace BrennanHatton.Networking
 		void ConnectToServer()
 		{
 			PhotonNetwork.ConnectUsingSettings();
-			//PhotonNetwork.ConnectToRegion("us");
-			//Debug.Log("Trying to connect to server");
+			
 			if(statusText != null)
 				statusText.text = "Trying to connect to server";
 		}
@@ -149,12 +139,8 @@ namespace BrennanHatton.Networking
 		{
 			if(statusText != null)
 				statusText.text = "Connected to server";
-			//Debug.Log("ConnectedToServer,");
+				
 			base.OnConnectedToMaster();
-			/*RoomOptions roomOptions = new RoomOptions();
-			roomOptions.MaxPlayers = 10;
-			roomOptions.IsVisible = true;
-			roomOptions.IsOpen = true;*/
 			
 			ConnectToRoom();
 			
@@ -167,7 +153,21 @@ namespace BrennanHatton.Networking
 				statusText.text = "You have been disconnected. Reason: " + cause.ToString() + "\nTrying to reconnect...";
 				
 			if(autoReconnect)
-				ConnectToServer();
+			{
+				if(reconnectDelay == 0)
+					ConnectToServer();
+				else
+				{
+					StartCoroutine(reconnectAfterTime(reconnectDelay));
+				}
+			}
+		}
+		
+		IEnumerator reconnectAfterTime(float time)
+		{
+			yield return new WaitForSeconds(time);
+			
+			ConnectToServer();
 		}
 		
 		public static Player GetActorPlayer(int actor)
