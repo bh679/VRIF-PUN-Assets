@@ -32,7 +32,7 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
 		}
 	}
 	
-	public PhotonView GetPlayerByActor(int actor)
+	public static PhotonView GetPlayerByActor(int actor)
 	{
 		for(int i = 0; i < spawnedPlayerPrefabs.Count; i++)
 		{
