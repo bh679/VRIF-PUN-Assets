@@ -1,9 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-namespace EqualReality.Networking
+namespace BrennanHatton.Networking
 {
 
 	/// <summary>

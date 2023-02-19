@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ExitGames.Client.Photon;
@@ -14,7 +14,8 @@ namespace BrennanHatton.Networking.Events
 		// If you have multiple custom events, it is recommended to define them in the used class
 		public const byte ChangeAvatarEventCode = 100,
 		ControllerButtonPressEventCode = 102,
-		NameChangeEventCode = 103;
+		NameChangeEventCode = 103,
+		ChangeSceneEventCode = 104;
 	
 	
 		public static void SendNameChangeEvent()
@@ -48,6 +49,20 @@ namespace BrennanHatton.Networking.Events
 			// You would have to set the Receivers to All in order to receive this event on the local client as well
 			PhotonNetwork.RaiseEvent(ControllerButtonPressEventCode, content, raiseEventOptions, SendOptions.SendReliable);
 			
+		}
+		
+		public static void SendChangeScene(int sceneBuildIndex, int delay)
+		{
+			
+			PlayerCustomProperties.SetActiveScene();
+			
+			Debug.Log(sceneBuildIndex + " " +delay);
+			
+			object[] content = new object[]{PhotonNetwork.LocalPlayer.ActorNumber, sceneBuildIndex, delay};
+			
+			RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All }; // You would have to set the Receivers to All in order to receive this event on the local client as well
+			
+			PhotonNetwork.RaiseEvent(ChangeSceneEventCode, content, raiseEventOptions, SendOptions.SendReliable);
 		}
 	}
 

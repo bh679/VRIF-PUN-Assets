@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,41 +6,50 @@ using UnityEngine.Events;
 using Photon.Pun;
 using Photon.Realtime;
 
-
-public class NickNameGenerator : MonoBehaviour
+namespace BrennanHatton.Networking
 {
-	
-	public string[] noun, adjective;
-	public UnityEvent onSetFromInput;
-	public bool setOnEnable = true;
-	
-	
-	public void OnEnable()
+
+	public class NickNameGenerator : MonoBehaviour
 	{
-		if(setOnEnable)
+		
+		public string[] noun, adjective;
+		public UnityEvent onSetFromInput, onChange;
+		public bool setOnEnable = true;
+		public bool useNoun = true, useAdjective = true;
+		
+		
+		public void OnEnable()
 		{
-			SetRandomNickName();
+			if(setOnEnable)
+			{
+				SetRandomNickName();
+			}
+		}
+		
+		public void SetInputFieldToNickName(InputField input)
+		{
+			input.text = PhotonNetwork.NickName;
+		}
+		
+		public void SetNickNameFromInputField(InputField input)
+		{
+			PhotonNetwork.NickName = input.text;
+			onSetFromInput.Invoke();
+			onChange.Invoke();
+		}
+	    
+		public void SetRandomNickName()
+		{
+			PhotonNetwork.NickName = GetRandomNickName();
+			onChange.Invoke();
+		}
+	    
+		public string GetRandomNickName()
+		{	
+			return (useAdjective?adjective[Random.Range(0,adjective.Length-1)]:"") 
+				+ " "
+				+ (useNoun?noun[Random.Range(0,noun.Length-1)]:"");
 		}
 	}
-	
-	public void SetInputFieldToNickName(InputField input)
-	{
-		input.text = PhotonNetwork.NickName;
-	}
-	
-	public void SetNickNameFromInputField(InputField input)
-	{
-		PhotonNetwork.NickName = input.text;
-		onSetFromInput.Invoke();
-	}
-    
-	public void SetRandomNickName()
-	{
-		PhotonNetwork.NickName = GetRandomNickName();
-	}
-    
-	public string GetRandomNickName()
-	{	
-		return adjective[Random.Range(0,adjective.Length-1)] + " " + noun[Random.Range(0,noun.Length-1)];
-	}
+
 }
