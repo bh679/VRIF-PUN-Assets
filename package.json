@@ -14,6 +14,7 @@
 	},
 	"dependencies": 
 	{
+	   	"com.unity.textmeshpro": "3.0.6",
 		"com.unity.inputsystem": "1.4.4",
 		"com.brennanhatton.unitytools": "1:0:1"
 	},
