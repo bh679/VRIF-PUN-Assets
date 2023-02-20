@@ -35,8 +35,7 @@ namespace BrennanHatton.Networking
 		
 		void Start()
 		{
-			Debug.Log(PhotonNetwork.CloudRegion);
-			statusText.text = tryingToConnect;//.Replace(serverChar, PhotonNetwork.PhotonServerSettings.AppSettings.Server);
+			statusText.text = tryingToConnect;
 			subtitle.text = "";
 		}
 		
