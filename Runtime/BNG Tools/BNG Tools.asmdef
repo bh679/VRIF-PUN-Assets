@@ -2,7 +2,8 @@
     "name": "BNGTools",
     "rootNamespace": "BrennanHatton.BNGTools",
     "references": [
-        "BNGCore"
+        "BNGCore",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
