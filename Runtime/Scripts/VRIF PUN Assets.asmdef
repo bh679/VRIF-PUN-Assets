@@ -2,6 +2,7 @@
     "name": "VRIF PUN Assets",
     "rootNamespace": "BrennanHatton.Networking",
     "references": [
+        "Unity.TextMeshPro",
         "PhotonUnityNetworking",
         "PhotonRealtime",
         "Unity.InputSystem",
