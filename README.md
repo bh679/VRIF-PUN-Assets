@@ -7,12 +7,7 @@ Unity (most recent tested on 2021.3.16f1) <br />
 [PUN2](https://assetstore.unity.com/packages/tools/network/pun-2-free-119922) (free import yourself)<br >
 [Brennans Unity Tools](https://github.com/bh679/Unity-Tools) (free / open source)
 
-## License
-[Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/)
-
-### Installing with Unity Package Manager
-
-## Setup Guide <br />
+## Installing with Unity Package Manager
 1 - Install Dependancies [BNG VRIF 1.82](https://assetstore.unity.com/packages/templates/systems/vr-interaction-framework-161066), [PUN2](https://assetstore.unity.com/packages/tools/network/pun-2-free-119922) & [Brennans Unity Tools](https://github.com/bh679/Unity-Tools)<br >
 2 - Import via package Manager<br >
 3 - Add BNG Assembley Definitions from the ``BNG Assembly Definitions 20230130.unitypackage`` <i>(if someone can help get my .gitignore working properlly this step wont be needed. I want it to ignore the BNG folder, but not the assemblt definitions within it)</i><br >
@@ -31,4 +26,10 @@ Windows -> Package Manager -> '+' -> `add package from git URL...` ->
 https://github.com/bh679/VRIF-PUN-Assets.git
 ```
 
+##Support 
 Join the [Discord](https://discord.gg/VC8gZ2GNHs "Join Discord server") server to leave feedback or get support.
+
+
+
+## License
+[Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/)
