@@ -4,10 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
-public class NetworkSyncScenes : MonoBehaviour
+namespace BrennanHatton.Networking
 {
-	public void SyncScenes(Toggle toggle)
+		
+	public class NetworkSyncScenes : MonoBehaviour
 	{
-		PhotonNetwork.AutomaticallySyncScene = toggle.isOn;
+		public void SyncScenes(Toggle toggle)
+		{
+			PhotonNetwork.AutomaticallySyncScene = toggle.isOn;
+		}
 	}
 }
