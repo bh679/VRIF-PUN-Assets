@@ -5,6 +5,7 @@ PUN Assets, requires PUN-2 & VRIF. Designed for Quest
 Unity (most recent tested on 2021.3.16f1) <br />
 [BNG VRIF 1.82](https://assetstore.unity.com/packages/templates/systems/vr-interaction-framework-161066) (paid - import yourself)   <br />
 [PUN2](https://assetstore.unity.com/packages/tools/network/pun-2-free-119922) (free import yourself)<br >
+PUN Voice
 [Brennans Unity Tools](https://github.com/bh679/Unity-Tools) (free / open source)
 
 ## Installing with Unity Package Manager
