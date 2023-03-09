@@ -6,7 +6,7 @@ using ExitGames.Client.Photon;
 using Photon.Realtime;
 using Photon.Pun;
 using BNG;
-using EqualReality.Networking;
+using BrennanHatton.Networking;
 
 namespace BrennanHatton.Networking.Events
 {
