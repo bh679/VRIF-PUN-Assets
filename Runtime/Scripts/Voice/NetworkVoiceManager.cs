@@ -7,7 +7,7 @@ using UnityEngine;
 using Photon.Voice.Unity;
 #endif
 
-namespace EqualReality.Networking.Voice
+namespace BrennanHatton.Networking
 {
 	#if PUNVOICE
 	[RequireComponent(typeof(VoiceConnection))]
