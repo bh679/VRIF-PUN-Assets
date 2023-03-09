@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace EqualReality.UserModes
+namespace EqualReality.MetaverseClassrooms
 {
 
 	public class Facilitator : MonoBehaviour

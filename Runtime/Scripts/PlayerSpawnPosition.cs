@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
@@ -67,7 +67,7 @@ namespace BrennanHatton.Networking
 			{
 				if(spawningMethod == SpawnMethod.ActorNumber)
 				{
-					if(Facilitator.mode && FacilitatorPoint != null)
+					if(EqualReality.MetaverseClassrooms.Facilitator.mode && FacilitatorPoint != null)
 						Player.TeleportPlayerToTransform(FacilitatorPoint);
 					else{
 						Player.TeleportPlayerToTransform(spawnPoints[(PhotonNetwork.LocalPlayer.ActorNumber - 1) % spawnPoints.Length]);
