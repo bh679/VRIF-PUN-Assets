@@ -1,5 +1,5 @@
 {
-    "name": "VRIF PUN Assets",
+    "name": "VRIF PUN Voice Assets",
     "rootNamespace": "BrennanHatton.Networking",
     "references": [
         "Unity.TextMeshPro",
@@ -9,7 +9,9 @@
         "BNGCore",
         "BNGHandPoseID",
         "BrennanHattonUnityTools",
-        "BNGTools"
+        "BNGTools",
+        "PhotonVoice.API",
+        "PhotonVoice"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
