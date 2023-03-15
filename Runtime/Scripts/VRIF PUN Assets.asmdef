@@ -9,7 +9,8 @@
         "BNGCore",
         "BNGHandPoseID",
         "BrennanHattonUnityTools",
-        "BNGTools"
+        "BNGTools",
+        "PhotonVoice"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

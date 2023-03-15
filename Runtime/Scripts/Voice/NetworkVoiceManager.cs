@@ -3,13 +3,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-#if PUNVOICE
 using Photon.Voice.Unity;
-#endif
 
 namespace BrennanHatton.Networking
 {
-	#if PUNVOICE
+	
 	[RequireComponent(typeof(VoiceConnection))]
 	public class NetworkVoiceManager : MonoBehaviour
 	{
@@ -79,5 +77,4 @@ namespace BrennanHatton.Networking
 		}
 		
 	}
-	#endif
 }
