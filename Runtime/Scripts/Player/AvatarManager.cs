@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
@@ -13,6 +13,7 @@ public class AvatarManager : MonoBehaviour
 	public EnableRandomGameobject eyes, mouth, head, body;
 	public SetMaterial materialSetter;
 	int activeId = 0;
+	public string PlayerInvisibleLayer = "PlayerInvisible";
 	
 	public void SetAvatar()
 	{
@@ -60,7 +61,7 @@ public class AvatarManager : MonoBehaviour
 			
 			for(int i =0 ; i < children.Length; i++)
 			{
-				children[i].gameObject.layer = LayerMask.NameToLayer("PlayerInvisible");
+				children[i].gameObject.layer = LayerMask.NameToLayer(PlayerInvisibleLayer);
 			}
 		}
 	}
