@@ -2,7 +2,7 @@
     "name": "Custom VRIF Emulator Actions",
     "maps": [
         {
-            "name": "Player",
+            "name": "CustomPlayer",
             "id": "31215e84-1b61-464c-8eae-95217566697c",
             "actions": [
                 {

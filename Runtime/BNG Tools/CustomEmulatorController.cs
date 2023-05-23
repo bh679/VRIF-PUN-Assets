@@ -112,6 +112,40 @@ namespace BrennanHatton.VRIF
 
 		bool priorStraightSetting;
 
+		void Reset()
+		{
+			VREmulator BNGVREmulator = this.GetComponent<VREmulator>();
+			
+			if(BNGVREmulator == null)
+				return;
+				
+			EditorOnly = false;
+			RequireGameFocus = true;
+			EmulatorActionSet = BNGVREmulator.EmulatorActionSet;
+			
+			ForceStraightTeleportRotation = BNGVREmulator.ForceStraightTeleportRotation;
+			
+			AllowUpDownControls = BNGVREmulator.AllowUpDownControls;
+			PlayerUpAction = BNGVREmulator.PlayerUpAction;
+			PlayerDownAction = BNGVREmulator.PlayerDownAction;
+			MinPlayerHeight = BNGVREmulator.MinPlayerHeight;
+			MaxPlayerHeight = BNGVREmulator.MaxPlayerHeight;
+			
+			LockCameraAction = BNGVREmulator.LockCameraAction;
+			CameraLookAction = BNGVREmulator.CameraLookAction;
+			CameraLookSensitivityX = BNGVREmulator.CameraLookSensitivityX;
+			CameraLookSensitivityY = BNGVREmulator.CameraLookSensitivityY;
+			MinimumCameraY = BNGVREmulator.MinimumCameraY;
+			MaximumCameraY = BNGVREmulator.MaximumCameraY;
+			
+			LeftGripAction = BNGVREmulator.LeftGripAction;
+			LeftTriggerAction = BNGVREmulator.LeftTriggerAction;
+			LeftThumbNearAction = BNGVREmulator.LeftThumbNearAction;
+			RightGripAction = BNGVREmulator.RightGripAction;
+			RightTriggerAction = BNGVREmulator.RightTriggerAction;
+			RightThumbNearAction = BNGVREmulator.RightThumbNearAction;
+		}
+		
 		void Start() {
 
 			if(GameObject.Find("CameraRig")) {
